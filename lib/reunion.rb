@@ -16,14 +16,13 @@ class Reunion
   end
   
   def breakdown
-    owers = []
-    @activities.each do |activity|
-      owers << activity.owed
-    end
+    @activities.map do |activity|
+      activity.owed
+    end # this could be its own method; e.g. amount_owed_per_person_per_activity
     owers.reduce do |memo, activity|
       memo.merge(activity)
     end
-    # owes.reduce(&:merge)
+    # owers.reduce(&:merge) # this could replace the above reduce block
   end
   
   def print_summary
